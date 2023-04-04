@@ -1,6 +1,8 @@
 import Expenses from "./components/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 
+function App() {
+
 const expenses = [
   {
     title:'Car Insurance',
@@ -19,10 +21,13 @@ const expenses = [
   }
 ]
 
-function App() {
+function addExpenseHandler(expense) {
+  console.log(expense)
+};
+
   return (
     <div>
-      <NewExpense/>
+      <NewExpense onAddExpense={addExpenseHandler}/>
       <Expenses expenses={expenses}/>
     </div>
   );
