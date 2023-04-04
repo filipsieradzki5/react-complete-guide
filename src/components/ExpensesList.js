@@ -13,7 +13,7 @@ return(
       .map((expense) => (
       <ExpenseItem
       key={expense.id}
-      name={expense.title} 
+      title={expense.title} 
       amount={expense.amount} 
       date={expense.date}
       />

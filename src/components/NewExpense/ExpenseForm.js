@@ -31,22 +31,10 @@ export default function ExpenseForm(props) {
         setEnteredDate('');
     };
 
-    function handleCancel() {
-        setDisplayedContent(initialButton)
-    }
+    
 
-    function handleRoll() {
-        setDisplayedContent(wrapper)
-    }
-
-    const initialButton = <div className='new-expense__actions'>
-    <button type='submit' onClick={handleRoll}>Add Expense</button>
-</div>
-
-    const [displayedContent, setDisplayedContent] = useState(initialButton)
-
-    const wrapper = 
-        <form onSubmit={submitHandler}>
+    return (
+    <form onSubmit={submitHandler}>
         <div className='new-expense__control'>
             <div className='new expense control'>
                 <label>Title</label>
@@ -78,12 +66,9 @@ export default function ExpenseForm(props) {
             </div>
         </div>
         <div className='new-expense__actions'>
-            <button type='button' onClick={handleCancel}>Cancel</button>
-            <button type='submit' >Add Expense</button>
+            <button type='button' onClick={props.onCancel}>Cancel</button>
+            <button type='submit'>Add Expense</button>
         </div>
     </form>
-
-    return (
-        displayedContent
     );
 };
