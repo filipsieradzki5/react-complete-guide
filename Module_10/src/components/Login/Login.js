@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
@@ -25,6 +25,8 @@ const Login = (props) => {
       event.target.value.includes('@') && enteredPassword.trim().length > 6
     );
   };
+
+  const [state, dispatch] = useReducer()
 
   const passwordChangeHandler = (event) => {
     setEnteredPassword(event.target.value);
