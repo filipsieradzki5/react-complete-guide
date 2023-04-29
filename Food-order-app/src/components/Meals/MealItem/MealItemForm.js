@@ -3,9 +3,10 @@ import Input from '../../UI/Input'
 import classes from './MealitemForm.module.css'
 
 export default function MealItemForm(props) {
-
+    
+    
     const [amountIsValid, setAmountIsValid] = useState(true)
-
+    
     const amountInputRef = useRef();
 
     function submitHandler(e) {
@@ -14,17 +15,20 @@ export default function MealItemForm(props) {
     const enteredAmount = amountInputRef.current.value;
     const enteredAmountNumber = +enteredAmount;
 
-    if(enteredAmount.trim().length === 0 || enteredAmountNumber < 1 || enteredAmountNumber > 5) {
-        setAmountIsValid(false)
-    } 
+     if(enteredAmount.trim().length === 0 || enteredAmountNumber < 1 || enteredAmountNumber > 5) {
+         setAmountIsValid(false)
+         return
+     } 
 
     props.onAddToCart(enteredAmountNumber)
 }
 
     return (
-        <form className={classes.form}>
-            <Input label='Amount' input={{
-                ref: {amountInputRef},
+        <form className={classes.form} onSubmit={submitHandler}>
+            <Input 
+            ref= {amountInputRef}
+            label='Amount' 
+            input={{
                 id: 'amount',
                 type: 'number',
                 min: '1',
