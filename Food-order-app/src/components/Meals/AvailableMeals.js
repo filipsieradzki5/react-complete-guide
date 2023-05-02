@@ -7,10 +7,16 @@ export default function AvailableMeals() {
 
     const [meals, setMeals]= useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const [newError, setNewError] = useState()
 
     useEffect(() => {
       async function fetchMeals() {
        const response = await fetch('https://foor-order-app-cb6b9-default-rtdb.firebaseio.com/meals.json')
+       
+        if(!response.ok) {
+          throw new Error('Something went wrong!') 
+        }
+
        const responseData = await response.json()
        let loadedMeals = []
 
@@ -25,13 +31,26 @@ export default function AvailableMeals() {
        setMeals(loadedMeals)
        setIsLoading(false)
       }
-      fetchMeals()
+
+        fetchMeals().catch(error => {
+        setIsLoading(false)
+        setNewError(error.message)
+      }
+        )
     }, [])
 
     if( isLoading) {
       return (
         <section className={classes.MealsLoading}>
           <p> Loading ...</p>
+        </section>
+      )
+    }
+
+    if (newError) {
+      return (
+        <section className={classes.MealsLoading}>
+          <p>{newError}</p>
         </section>
       )
     }
