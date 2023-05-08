@@ -36,6 +36,7 @@ function App() {
     title: 'Success',
     message: 'Sending cart data sussessfully'
   }))
+}
 
   if (isInitial) {
     isInitial= false;
@@ -49,7 +50,7 @@ function App() {
       message: 'ERROR'
     }))
   })
-}} ,[cart, dispatch])
+} ,[cart, dispatch])
   
   return (
     <>
